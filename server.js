@@ -21,14 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const cors = require('cors')
 app.use(cors())
-app.get('/test', (req, res) => {   // Router เวลาเรียกใช้งาน
-  let sql = 'SELECT * FROM testtttt'  // คำสั่ง sql
-  let query = db.query(sql, (err, results) => { // สั่ง Query คำสั่ง sql
-    if (err) throw err  // ดัก error
-    console.log(results) // แสดงผล บน Console 
-    res.json(results)   // สร้างผลลัพธ์เป็น JSON ส่งออกไปบน Browser
-  })
-})
+
 
 app.post('/books',upload.single('Pic'),(req, res) => {
   console.log("Api/books")
@@ -170,18 +163,6 @@ app.post('/books', (req, res) => {
   books.push(req.body)
   res.status(201).json(req.body)
 })
-
-app.put('/books/:id', (req, res) => {
-  const updateIndex = books.findIndex(book => book.id === req.params.id)
-  res.json(Object.assign(books[updateIndex], req.body))
-})
-
-app.delete('/books/:id', (req, res) => {
-  const deletedIndex = books.findIndex(book => book.id === req.params.id)
-  books.splice(deletedIndex, 1)
-  res.status(204).send()
-})
-
 app.listen(3001, () => {
   console.log('Start server at port 3001.')
 })
