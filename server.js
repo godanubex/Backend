@@ -41,7 +41,7 @@ app.post('/books',upload.single('Pic'),(req, res) => {
     if (err){
       console.log(err)
     } else {
-      res.redirect('http://178.128.119.167:3000')
+      res.redirect('http://159.223.37.95:3000')
     }
   } )})
 
